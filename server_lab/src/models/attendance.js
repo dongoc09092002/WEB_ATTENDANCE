@@ -4,6 +4,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    Hourmin: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    }
   });
   Attendances.associate = (models) => {
     Attendances.belongsTo(models.Users, { foreignKey: "UserId", as: "user" });

@@ -1,5 +1,5 @@
 const mqtt = require("mqtt");
- let client = mqtt.connect("mqtt://broker.hivemq.com");
+ let client = mqtt.connect("https://test.mosquitto.org:1883");
 module.exports = {
     client
 }

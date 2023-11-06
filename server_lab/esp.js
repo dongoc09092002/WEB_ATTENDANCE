@@ -1,9 +1,9 @@
 const mqtt = require("mqtt");
-let client = mqtt.connect("mqtt://broker.hivemq.com");
+let client = mqtt.connect("https://test.mosquitto.org:1883");
 
 client.on("connect", () => {
   setInterval(() => {
-    client.subscribe("new_employee");
+    client.subscribe("timekeep/new_employee");
     client.subscribe("time_keeping");
   }, 1000);
 });
@@ -14,8 +14,8 @@ client.on("message", (topic, data) => {
     client.publish("time_keeping_res", "20203520");
     console.log("connected");
   }
-  if (topic === "new_employee") {
-    client.publish("new_employee_res", "20203520");
+  if (topic === "timekeep/new_employee") {
+    client.publish("timekeep/new_employee_res", "20203520");
     console.log("connected");
   }
 });

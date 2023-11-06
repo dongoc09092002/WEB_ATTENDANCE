@@ -2,7 +2,7 @@ const { Users } = require("../models");
 
 const client = require("../mqtt");
 
-client.client.subscribe("new_employee_res");
+client.client.subscribe("timekeep/new_employee_res");
 
 const createUser = async (req, res) => {
   const { userName, userCode, userImage } = req.body;
@@ -24,13 +24,13 @@ const createUser = async (req, res) => {
     } else {
       // Tạo một promise để đợi phản hồi
       const waitForResponse = new Promise((resolve, reject) => {
-        client.client.publish("new_employee", `${userImage}`);
+        client.client.publish("timekeep/new_employee", `${userImage}`);
         setTimeout(() => {
           reject(new Error("Timeout waiting for response"));
-        }, 2000); // Timeout sau 2 giây
+        }, 5000); // Timeout sau 5 giây
 
         client.client.on("message", (topic, message) => {
-          if (topic === "new_employee_res") {
+          if (topic === "timekeep/new_employee_res") {
             const response = message.toString();
             resolve(response);
           }

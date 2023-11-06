@@ -123,7 +123,7 @@ function Boxuser(prop) {
                     <span>Name : {dataAttent.name}</span>
                     <br />
                     <span>Code : {dataAttent.code}</span> <br />
-                    {dataAttent.length > 0 ? (
+                    {/* {dataAttent.length > 0 ? (
                       <>
                         <span>
                           Attendace : <i class="fa-solid fa-check"></i>
@@ -136,11 +136,41 @@ function Boxuser(prop) {
                           Attendace : <i class="fa-solid fa-xmark"></i>
                         </span>
                       </>
+                    )} */}
+                    {dataAttent.length > 0 ? (
+                      <table>
+                        <tr>
+                          <th>Number</th>
+                          <th>Time</th>
+                        </tr>
+                        {dataAttent.data &&
+                          dataAttent.data.length > 0 &&
+                          dataAttent.data.map((item, index) => {
+                            console.log("item", item);
+                            return (
+                              <>
+                                <tr>
+                                  <td>{index + 1}</td>
+                                  <td>{item.Hourmin}</td>
+                                </tr>
+                              </>
+                            );
+                          })}
+                      </table>
+                    ) : (
+                      <>
+                        <h3
+                          style={{
+                            color: "#145e94",
+                            fontSize:'30px',
+                            textAlign:'center',
+                            padding:'10px 0px'
+                          }}
+                        >
+                          Null
+                        </h3>
+                      </>
                     )}
-                    {/* <div className="modal_user_infor_content_btn">
-                      <i class="fa-solid fa-pen-to-square"></i>
-                      <i class="fa-solid fa-trash"></i>
-                    </div> */}
                   </div>
                 </div>
                 <div className="modal_user_footer">

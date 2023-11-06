@@ -21,13 +21,13 @@
 
 .user_item img {
     width: 60px;
-    height: 60px;
+    /* height: 60px; */
     border-radius: 50%;
     margin-right: 10px;
 }
 
 .modal_user{
-    
+    width: 500px;
     position: relative;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
@@ -44,7 +44,9 @@
     padding: 10px;
 }
 .modal_user_infor_img{
-box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+
+display: flex;
+align-items: center;
 }
 .icon_close_modal{
     position: absolute;
@@ -60,7 +62,9 @@ box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
 }
 .modal_user_infor_img img{
     width: 150px;
-    height: 150px;
+    box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
+
+    /* height: 150px; */
 }
 .modal_user_infor_content{
     flex: 1;
@@ -86,4 +90,23 @@ box-shadow: rgba(3, 102, 214, 0.3) 0px 0px 0px 3px;
     padding: 10px 0px;
     justify-content: center;
     text-align: center;
+}
+
+table{
+border: 3px solid #145e94;
+width: 100%;
+text-align: center;
+margin: 0px 5px;
+padding: 0px 20px;
+font-size: 22px;
+color: #145e94;
+font-weight: 600;
+}
+tr{
+    border: 1px solid red;
+}
+th{
+    border-bottom: 2px solid #145e94;
+    width: 50%;
+    padding: 0px 5px;
 }
