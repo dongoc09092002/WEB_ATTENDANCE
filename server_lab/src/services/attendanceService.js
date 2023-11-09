@@ -65,45 +65,16 @@ const createAttendance = async (req, res) => {
         message: "Error,Check the Code again",
       });
     } else {
-      // Tạo một promise để đợi phản hồi
-      const waitForResponse = new Promise((resolve, reject) => {
-        client.client.publish("time_keeping", `${userCode}`);
-        setTimeout(() => {
-          reject(new Error("Timeout waiting for response"));
-        }, 2000); // Timeout sau 3 giây
-
-        client.client.on("message", (topic, message) => {
-          if (topic === "time_keeping_res") {
-            const response = message.toString();
-            resolve(response);
-          }
-        });
+      const attendance = await Attendances.create({
+        Hourmin: gioPhut,
+        Time: formattedDate,
+        UserId: checkUser.id,
       });
-
-      try {
-        const response = await waitForResponse;
-        // console.log(response);
-        if (response) {
-          //view time
-          // console.log(formattedDate);
-          await Attendances.create({
-            Hourmin: gioPhut,
-            Time: formattedDate,
-            UserId: checkUser.id,
-          });
-        }
-        return res.json({
-          message: "Successfully",
-          errCode: 0,
-          data: response,
-        });
-      } catch (error) {
-        return res.json({
-          errCode: 1,
-          message: "No MQTT response . Please check",
-          data: error.message,
-        });
-      }
+      return res.json({
+        message: "Successfully",
+        errCode: 0,
+        data: attendance,
+      });
     }
   } catch (error) {
     return res.json({
